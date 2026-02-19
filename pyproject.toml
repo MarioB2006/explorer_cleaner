@@ -1,0 +1,5 @@
+[project]
+name="explorer_cleaner"
+version=0.1
+description="A simple tool to clean the download folder"
+authors=[{name = "Mario"}]
