@@ -1,3 +1,4 @@
+import argparse
 import os
 import shutil
 
@@ -20,4 +21,7 @@ def main(p: str) -> None:
             print("Folder will not be cleaned, end of task")
 
 if __name__ == "__main__":
-    main("C:\\Users\\mario\\Downloads")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("path", help="Folder to clean")
+    args = parser.parse_args()
+    main(args.path)
