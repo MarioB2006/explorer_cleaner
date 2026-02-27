@@ -1,24 +1,40 @@
 import os
 import shutil
-import fire
+import tkinter as tk
+from ttkbootstrap import Style
 
-def main(p: str) -> None:
+def showFolder(p: str) -> str:
     if next(os.scandir(p), None) is None:
-        print("Folder is empty")
+        return "Folder is empty"
     else:
-        print(f"Files in this folder:\n")
+        str1=f"Files in this folder:\n\n"
+        str2=""
         for i in os.listdir(p):
-            print(f"{i}\n")
-        user_input = input("Folder isnt empty, are you sure u want delete everything?\n")
-        if user_input in ["y", "1", "yes"]:
-            for i in os.listdir(p):
-                full = os.path.join(p, i)
-                if os.path.isfile(full):
-                    os.remove(full)
-                else:
-                    shutil.rmtree(full)
+            str2 = str2 +f"{i}\n"
+    return str1+str2
+
+def deleteFiles(p:str):
+    for i in os.listdir(p):
+        full = os.path.join(p, i)
+        if os.path.isfile(full):
+            os.remove(full)
         else:
-            print("Folder will not be cleaned, end of task")
+            shutil.rmtree(full)
+
+def main(path:str):
+    root = tk.Tk()                 
+    style = Style(theme="darkly") 
+    root.title("Folder cleaner")
+    root.geometry("400x400")
+    label1 = tk.Label(text=showFolder(path),font=(16))
+    label1.pack()
+
+    button1 = tk.Button(root, text="delete all Files", command=lambda:deleteFiles(path), font=(10))
+    button1.pack(pady=50)
+
+    button2 = tk.Button(root, text="end programm", command=root.destroy, font=(10))
+    button2.pack(pady=5)
+    root.mainloop()
 
 if __name__ == "__main__":
-    fire.Fire(main)
+    main(r"C:\Users\mario\Downloads")
