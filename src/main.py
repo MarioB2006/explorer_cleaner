@@ -2,6 +2,7 @@ import os
 import shutil
 import tkinter as tk
 from ttkbootstrap import Style
+import fire
 
 def showFolder(p: str) -> str:
     if next(os.scandir(p), None) is None:
@@ -37,4 +38,4 @@ def main(path:str):
     root.mainloop()
 
 if __name__ == "__main__":
-    main(r"C:\Users\mario\Downloads")
+    fire.Fire(main)
