@@ -18,13 +18,14 @@ def deleteFiles(p:str):
     for i in os.listdir(p):
         full = os.path.join(p, i)
         if os.path.isfile(full):
+            os.chmod(full,777)
             os.remove(full)
         else:
             shutil.rmtree(full)
 
 def main(path:str):
     root = tk.Tk()                 
-    style = Style(theme="darkly") 
+    style = Style(theme="cyborg") 
     root.title("Folder cleaner")
     root.geometry("400x400")
     label1 = tk.Label(text=showFolder(path),font=(16))
@@ -39,3 +40,4 @@ def main(path:str):
 
 if __name__ == "__main__":
     fire.Fire(main)
+    
